@@ -1,13 +1,30 @@
 import Link from "next/link";
+import styles from "./page.module.css";
+import MealsGrid from "@/components/meals/meals-grid";
+import { getMeals } from "@/lib/meals";
+import MealItemI from "@/components/meals/types";
 
-const MealsPage = () => {
+const MealsPage = async () => {
+  const meals: MealItemI[] = await getMeals();
+
   return (
-    <div>
-      <h1>Meals Page</h1>
-      <Link href="/meals/blog-1">1</Link>
-      <Link href="/meals/blog-2">2</Link>
-      <Link href="/meals/blog-3">3</Link>
-    </div>
+    <>
+      <header className={styles.header}>
+        <h1>
+          Delicious meals, created{" "}
+          <span className={styles.highlight}>by you</span>
+        </h1>
+        <p>
+          Choose your favorite recipe and cook it yourself. It is easy and fun!
+        </p>
+        <p className={styles.cta}>
+          <Link href="/meals/share">Share Your Favorite Recipe</Link>
+        </p>
+      </header>
+      <main className={styles.main}>
+        <MealsGrid meals={meals} />
+      </main>
+    </>
   );
 };
 

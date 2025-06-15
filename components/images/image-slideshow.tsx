@@ -3,13 +3,13 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 
-import burgerImg from "@/assets/burger.jpg";
-import curryImg from "@/assets/curry.jpg";
-import dumplingsImg from "@/assets/dumplings.jpg";
-import macncheeseImg from "@/assets/macncheese.jpg";
-import pizzaImg from "@/assets/pizza.jpg";
-import schnitzelImg from "@/assets/schnitzel.jpg";
-import tomatoSaladImg from "@/assets/tomato-salad.jpg";
+import burgerImg from "@/images/burger.jpg";
+import curryImg from "@/images/curry.jpg";
+import dumplingsImg from "@/images/dumplings.jpg";
+import macncheeseImg from "@/images/macncheese.jpg";
+import pizzaImg from "@/images/pizza.jpg";
+import schnitzelImg from "@/images/schnitzel.jpg";
+import tomatoSaladImg from "@/images/tomato-salad.jpg";
 import styles from "./image-slideshow.module.css";
 
 const images = [
