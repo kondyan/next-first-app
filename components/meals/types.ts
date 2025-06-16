@@ -1,8 +1,10 @@
 export default interface MealItemI {
-  id?: string;
+  id: string;
   title: string;
   slug: string;
   image: string;
   summary: string;
   creator: string;
+  creator_email: string;
+  instructions: string;
 }
