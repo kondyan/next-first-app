@@ -2,12 +2,13 @@ import Image from "next/image";
 import styles from "./page.module.css";
 import { getMeal } from "@/lib/meals";
 import MealItemI from "@/components/meals/types";
+import { notFound } from "next/navigation";
 
 const DynamicMealsPage = ({ params }: { params: { slug: string } }) => {
   const meal: MealItemI | undefined = getMeal(params.slug);
 
   if (!meal) {
-    return <p>This Meal does not exist, Please try reloading page</p>;
+    notFound();
   }
 
   meal.instructions = meal.instructions.replace(/\n/g, "<br />");
