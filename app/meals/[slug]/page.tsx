@@ -5,13 +5,15 @@ import MealItemI from "@/components/meals/types";
 import { notFound } from "next/navigation";
 
 const DynamicMealsPage = ({ params }: { params: { slug: string } }) => {
-  const meal: MealItemI | undefined = getMeal(params.slug);
+  const meal: undefined | MealItemI = getMeal(params?.slug);
 
   if (!meal) {
     notFound();
   }
 
-  meal.instructions = meal.instructions.replace(/\n/g, "<br />");
+  if (typeof meal.instructions === "string") {
+    meal.instructions = meal.instructions.replace(/\n/g, "<br />");
+  }
   return (
     <>
       <header className={styles.header}>
