@@ -5,7 +5,8 @@ import MealItemI from "@/components/meals/types";
 import { notFound } from "next/navigation";
 
 const DynamicMealsPage = ({ params }: { params: { slug: string } }) => {
-  const meal: undefined | MealItemI = getMeal(params?.slug);
+  const meal: undefined | MealItemI =
+    typeof params?.slug === "string" ? getMeal(params.slug) : undefined;
 
   if (!meal) {
     notFound();
@@ -18,20 +19,32 @@ const DynamicMealsPage = ({ params }: { params: { slug: string } }) => {
     <>
       <header className={styles.header}>
         <div className={styles.image}>
-          <Image src={meal.image} alt={meal.title} fill />
+          <Image
+            src={typeof meal.image === "string" ? meal.image : ""}
+            alt={typeof meal.title === "string" ? meal.title : ""}
+            fill
+          />
         </div>
         <div className={styles.headerText}>
-          <h1>{meal.title}</h1>
+          <h1>{typeof meal.title === "string" ? meal.title : ""}</h1>
           <p className={styles.creator}>
-            by <a href={`mailto: ${meal.creator_email}`}>{meal.creator}</a>
+            by{" "}
+            <a href={`mailto: ${meal.creator_email}`}>
+              {typeof meal.creator_email === "string" ? meal.creator_email : ""}
+            </a>
           </p>
-          <p className={styles.summary}>{meal.summary}</p>
+          <p className={styles.summary}>
+            {typeof meal.summary === "string" ? meal.summary : ""}
+          </p>
         </div>
       </header>
       <main>
         <p
           className={styles.instructions}
-          dangerouslySetInnerHTML={{ __html: meal.instructions }}
+          dangerouslySetInnerHTML={{
+            __html:
+              typeof meal.instructions === "string" ? meal.instructions : "",
+          }}
         ></p>
       </main>
     </>
