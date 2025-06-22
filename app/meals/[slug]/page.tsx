@@ -4,6 +4,21 @@ import { getMeal } from "@/lib/meals";
 import MealItemI from "@/components/meals/types";
 import { notFound } from "next/navigation";
 
+export async function generateMetadata({
+  params,
+}: {
+  params: { slug: string };
+}) {
+  const meal = getMeal(params.slug);
+  if (!meal) {
+    notFound();
+  }
+  return {
+    title: meal?.title,
+    description: meal?.summary,
+  };
+}
+
 const DynamicMealsPage = ({ params }: { params: { slug: string } }) => {
   const meal: undefined | MealItemI =
     typeof params?.slug === "string" ? getMeal(params.slug) : undefined;
